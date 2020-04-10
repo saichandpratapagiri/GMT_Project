@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    >
 
-</selector>
+    <stroke
+        android:width="2dp"
+        android:color="#030303">
+    </stroke>
+
+    <solid
+        android:color="@color/color_login_editext"
+        ></solid>
+
+</shape>

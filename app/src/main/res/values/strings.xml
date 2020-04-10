@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">GMTAndroid</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="to_new_reg">Click here to New Registration</string>
 </resources>

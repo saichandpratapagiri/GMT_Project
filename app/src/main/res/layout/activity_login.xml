@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/usernameEt"
         android:layout_width="302dp"
         android:layout_height="52dp"
         android:background="@drawable/border_rect"
@@ -35,6 +36,7 @@
         app:layout_constraintVertical_bias="0.659" />
 
     <EditText
+        android:id="@+id/pswdEt"
         android:layout_width="302dp"
         android:layout_height="52dp"
         android:background="@drawable/border_rect"
@@ -51,5 +53,32 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.764" />
+
+    <TextView
+        android:id="@+id/newReg"
+        android:layout_width="241dp"
+        android:layout_height="28dp"
+        android:text="@string/to_new_reg"
+        android:textAlignment="center"
+        android:textColor="#FDFDFD"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pswdEt"
+        app:layout_constraintVertical_bias="0.814" />
+
+    <ImageButton
+        android:layout_width="136dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="toRegistraction"
+        android:background="@drawable/border_circle"
+        android:src="@drawable/ic_arrow_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintLeft_toRightOf="@id/newReg"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
