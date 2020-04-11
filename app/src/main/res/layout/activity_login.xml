@@ -75,7 +75,7 @@
         android:layout_marginBottom="16dp"
         android:onClick="toRegistraction"
         android:background="@drawable/border_circle"
-        android:src="@drawable/ic_arrow_forward"
+        app:srcCompat="@drawable/ic_arrow_forward"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintLeft_toRightOf="@id/newReg"
