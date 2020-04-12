@@ -5,6 +5,7 @@
     <string name="to_new_reg">Click here to New Registration</string>
     <string name="title_activity_post_login">PostLogin</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_project_structure">Project Structure</string>
+    <string name="title_inbox">Inbox</string>
+    <string name="title_control">Control</string>
 </resources>

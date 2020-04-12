@@ -14,12 +14,19 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.gmtandroid.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="@string/title_project_structure"
+        tools:layout="@layout/fragment_project_support" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.gmtandroid.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:label="@string/title_inbox"
+        tools:layout="@layout/fragment_inbox" />
+
+    <fragment
+        android:id="@+id/navigation_control"
+        android:name="com.example.gmtandroid.ui.control.ControlFragment"
+        android:label="@string/title_control"
+        tools:layout="@layout/fragment_control" />
+
 </navigation>
