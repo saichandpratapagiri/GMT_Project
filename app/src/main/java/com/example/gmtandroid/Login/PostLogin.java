@@ -1,7 +1,8 @@
-package com.example.gmtandroid;
+package com.example.gmtandroid.Login;
 
 import android.os.Bundle;
 
+import com.example.gmtandroid.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
