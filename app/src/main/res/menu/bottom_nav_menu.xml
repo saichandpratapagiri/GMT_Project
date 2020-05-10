@@ -16,9 +16,4 @@
         android:icon="@drawable/inbox"
         android:title="@string/title_inbox" />
 
-    <item
-        android:id="@+id/navigation_control"
-        android:icon="@drawable/control"
-        android:title="@string/title_control" />
-
 </menu>

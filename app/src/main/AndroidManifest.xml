@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gmtandroid">
 
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ProfileActivity"></activity>
         <activity
             android:name=".Login.PostLogin"
-            android:label="@string/title_activity_post_login"></activity>
+            android:label="@string/title_activity_post_login" />
         <activity
             android:name=".Login.LoginActivity"
             android:screenOrientation="portrait">
