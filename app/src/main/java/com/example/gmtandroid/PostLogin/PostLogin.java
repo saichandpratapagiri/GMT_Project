@@ -1,7 +1,7 @@
-package com.example.gmtandroid.Login;
+package com.example.gmtandroid.PostLogin;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,6 +25,7 @@ public class PostLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_login);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setItemIconTintList(null);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
@@ -47,7 +48,6 @@ public class PostLogin extends AppCompatActivity {
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(Color.parseColor("#ffffff"));
         imageView.setBackground(gradientDrawable);
-        //imageView.setBackground(getDrawable(R.drawable.border_circle));
         menu.getItem(1).setActionView(imageView);
 
         return super.onPrepareOptionsMenu(menu);
@@ -55,10 +55,7 @@ public class PostLogin extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.profile:
-                return true;
-        }
+        startActivity(new Intent(PostLogin.this, ProfileActivity.class));
         return super.onOptionsItemSelected(item);
     }
 }

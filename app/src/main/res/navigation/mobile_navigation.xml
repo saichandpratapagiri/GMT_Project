@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.gmtandroid.ui.home.HomeFragment"
+        android:name="com.example.gmtandroid.PostLogin.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.gmtandroid.ui.project_story.ProjectStoryFragment"
+        android:name="com.example.gmtandroid.PostLogin.project_story.ProjectStoryFragment"
         android:label="@string/title_project_structure"
         tools:layout="@layout/fragment_project_support" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.gmtandroid.ui.inbox.InboxFragment"
+        android:name="com.example.gmtandroid.PostLogin.inbox.InboxFragment"
         android:label="@string/title_inbox"
         tools:layout="@layout/fragment_inbox" />
 

@@ -3,6 +3,8 @@
     package="com.example.gmtandroid">
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,18 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity
-            android:name=".Login.PostLogin"
-            android:label="@string/title_activity_post_login" />
-        <activity
-            android:name=".Login.LoginActivity"
+        <activity android:name=".PreLogin.PageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".PostLogin.ProfileActivity" />
+        <activity
+            android:name=".PostLogin.PostLogin"
+            android:label="@string/title_activity_post_login" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

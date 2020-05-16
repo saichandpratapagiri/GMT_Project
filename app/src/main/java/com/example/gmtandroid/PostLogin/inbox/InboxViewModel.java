@@ -1,4 +1,4 @@
-package com.example.gmtandroid.ui.inbox;
+package com.example.gmtandroid.PostLogin.inbox;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

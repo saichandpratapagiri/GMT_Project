@@ -1,4 +1,4 @@
-package com.example.gmtandroid.ui.home;
+package com.example.gmtandroid.PostLogin.project_story;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gmtandroid.R;
 
-public class HomeFragment extends Fragment {
+public class ProjectStoryFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private ProjectStoryViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
+        dashboardViewModel =
+                ViewModelProviders.of(this).get(ProjectStoryViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_project_support, container, false);
+        final TextView textView = root.findViewById(R.id.text_dashboard);
+        dashboardViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

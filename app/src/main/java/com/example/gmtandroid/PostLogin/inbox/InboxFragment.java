@@ -1,4 +1,4 @@
-package com.example.gmtandroid.ui.inbox;
+package com.example.gmtandroid.PostLogin.inbox;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
