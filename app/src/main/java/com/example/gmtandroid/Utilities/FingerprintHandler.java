@@ -10,10 +10,8 @@ import android.os.CancellationSignal;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import com.example.gmtandroid.Login.PostLogin;
-import com.example.gmtandroid.R;
+import com.example.gmtandroid.PostLogin.PostLogin;
 
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
     private Context context;
