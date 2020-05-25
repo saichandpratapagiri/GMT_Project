@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gmtandroid.PostLogin.PostLogin;
+import com.example.gmtandroid.PostLogin.unconfirmed_funds.FundsActivity;
 import com.example.gmtandroid.R;
 import com.example.gmtandroid.Utilities.FingerprintHandler;
 
@@ -231,7 +232,7 @@ public class LoginActivity extends AppCompatActivity {
         if(username != null && !username.equals("")){
             if(pswd != null && !pswd.equals("") ){
                 finish();
-                startActivity(new Intent(LoginActivity.this, PostLogin.class));
+                startActivity(new Intent(LoginActivity.this, FundsActivity.class));
             }
             else {
                 pswdEt.setError("Password cannot be nil");

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 
 import com.example.gmtandroid.PostLogin.PostLogin;
+import com.example.gmtandroid.PostLogin.unconfirmed_funds.FundsActivity;
 
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
     private Context context;
@@ -54,7 +55,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
         this.update("Fingerprint Authentication succeeded.", true);
         ((Activity) context).finish();
-        context.startActivity(new Intent(context, PostLogin.class));
+        context.startActivity(new Intent(context, FundsActivity.class));
     }
 
 
