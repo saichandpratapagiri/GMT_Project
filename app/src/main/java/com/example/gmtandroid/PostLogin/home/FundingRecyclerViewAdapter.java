@@ -18,10 +18,12 @@ public class FundingRecyclerViewAdapter extends RecyclerView.Adapter<FundingRecy
 
     private ArrayList<String> fundList;
     private Context context;
+    private RecyclerItemClickListener listener;
 
-    public FundingRecyclerViewAdapter(ArrayList<String> fundingList, Context context) {
+    public FundingRecyclerViewAdapter(ArrayList<String> fundingList, Context context,RecyclerItemClickListener listener) {
         this.fundList = fundingList;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -45,6 +47,12 @@ public class FundingRecyclerViewAdapter extends RecyclerView.Adapter<FundingRecy
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             card_tv = itemView.findViewById(R.id.card_text);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(fundList.get(getAdapterPosition()));
+                }
+            });
         }
     }
 }

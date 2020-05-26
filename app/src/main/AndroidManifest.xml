@@ -32,6 +32,11 @@
         <activity
             android:name=".Login.LoginActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fundingDetails.FundingDetailsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>

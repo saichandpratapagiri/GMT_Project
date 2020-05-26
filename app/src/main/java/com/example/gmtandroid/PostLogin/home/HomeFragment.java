@@ -1,23 +1,22 @@
 package com.example.gmtandroid.PostLogin.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gmtandroid.fundingDetails.FundingDetailsActivity;
 import com.example.gmtandroid.R;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RecyclerItemClickListener {
 
     private HomeViewModel homeViewModel;
     private RecyclerView fundingRv;
@@ -35,8 +34,8 @@ public class HomeFragment extends Fragment {
         fundingRv.setLayoutManager(new LinearLayoutManager(context));
         managementRv.setLayoutManager(new LinearLayoutManager(context));
         //Setting Adapters
-        fundingRv.setAdapter(new FundingRecyclerViewAdapter(homeViewModel.getFundList(), context));
-        managementRv.setAdapter(new ManagementRecyclerViewAdapter(homeViewModel.getManagementList(), context));
+        fundingRv.setAdapter(new FundingRecyclerViewAdapter(homeViewModel.getFundList(), context, this));
+        managementRv.setAdapter(new ManagementRecyclerViewAdapter(homeViewModel.getManagementList(), context, this));
         //Disabling scrolling
         fundingRv.setNestedScrollingEnabled(false);
         managementRv.setNestedScrollingEnabled(false);
@@ -47,5 +46,11 @@ public class HomeFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+    }
+
+    @Override
+    public void onItemClick(String string) {
+        Intent intent = new Intent(context, FundingDetailsActivity.class);
+        context.startActivity(intent);
     }
 }

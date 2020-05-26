@@ -17,10 +17,12 @@ public class ManagementRecyclerViewAdapter  extends RecyclerView.Adapter<Managem
 
     private ArrayList<String> managementList;
     private Context context;
+    private RecyclerItemClickListener listener;
 
-    public ManagementRecyclerViewAdapter(ArrayList<String> managementList, Context context) {
+    public ManagementRecyclerViewAdapter(ArrayList<String> managementList, Context context,RecyclerItemClickListener listener) {
         this.managementList = managementList;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -44,6 +46,12 @@ public class ManagementRecyclerViewAdapter  extends RecyclerView.Adapter<Managem
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             card_tv = itemView.findViewById(R.id.card_text);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(managementList.get(getAdapterPosition()));
+                }
+            });
         }
     }
 }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_tab_layout">
+
+            <TextView
+                android:id="@+id/label_community"
+                style="@style/ProjectDetails_Text_LabelStyle"
+                android:text="@string/community"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_community"
+                style="@style/ProjectDetails_TextStyle"
+                android:text="@{viewModel.community}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_community" />
+
+
+            <TextView
+                android:id="@+id/label_female_employment"
+                style="@style/ProjectDetails_Text_LabelStyle"
+                android:text="@string/female_employment_target"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_community" />
+
+
+            <TextView
+                android:id="@+id/text_female_employment"
+                style="@style/ProjectDetails_TextStyle"
+                android:text="@{viewModel.femaleEmploymentTarget}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_female_employment" />
+
+            <TextView
+                android:id="@+id/label_funds_planning"
+                style="@style/ProjectDetails_Text_LabelStyle"
+                android:text="@string/target_funds_for_planning"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_female_employment" />
+
+            <TextView
+                android:id="@+id/text_funds_planning"
+                style="@style/ProjectDetails_TextStyle"
+                android:text="@{viewModel.targetFundForPlanning}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_funds_planning" />
+
+            <TextView
+                android:id="@+id/label_fund_conservation"
+                style="@style/ProjectDetails_Text_LabelStyle"
+                android:text="@string/target_funds_for_conservation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_funds_planning" />
+
+            <TextView
+                android:id="@+id/text_fund_conservation"
+                style="@style/ProjectDetails_TextStyle"
+                android:text="@{viewModel.targetFundForConservation}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_fund_conservation" />
+
+            <TextView
+                android:id="@+id/label_funds_raised"
+                style="@style/ProjectDetails_TextStyle"
+                android:layout_marginTop="30dp"
+                android:text="@string/funds_raised"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_fund_conservation" />
+
+            <include
+                android:id="@+id/fund_raised_layout"
+                layout="@layout/fund_raised_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                app:fundsAmount="@{viewModel.fundRaised}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_funds_raised"
+                app:progress="@{viewModel.progress}"
+                app:progressInText="@{viewModel.progressInText}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.gmtandroid.fundingDetails.ProjectDetailsViewModel" />
+    </data>
+</layout>

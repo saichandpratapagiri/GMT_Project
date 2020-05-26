@@ -8,4 +8,19 @@
     <string name="title_project_structure">Project Story</string>
     <string name="title_inbox">Inbox</string>
     <string name="title_profile">Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="planting_area_boundaries_image">planting area boundaries image</string>
+    <string name="planting_area">Planting Area</string>
+    <string name="density">Density</string>
+    <string name="total_trees">Total Trees</string>
+    <string name="community">Community</string>
+    <string name="female_employment_target">Female Employment Target</string>
+    <string name="target_funds_for_planning">Target Funds for Planning</string>
+    <string name="target_funds_for_conservation">Target Funds for Conservation</string>
+    <string name="funds_raised">Funds Raised</string>
+    <string name="back_to_home"><![CDATA[< Back to Home]]></string>
+    <string name="project_details">Project Details</string>
+    <string name="nursery_image">Nursery image</string>
 </resources>
