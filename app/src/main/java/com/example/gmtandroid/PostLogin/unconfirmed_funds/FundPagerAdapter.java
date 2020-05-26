@@ -42,7 +42,9 @@ public class FundPagerAdapter extends PagerAdapter {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, UploadRecieptActivity.class));
+                Intent i = new Intent(context, UploadRecieptActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
             }
         });
         container.addView(view);
