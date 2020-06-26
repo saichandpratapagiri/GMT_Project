@@ -97,6 +97,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.gmtandroid.fundingDetails.ProjectDetailsViewModel" />
+            type="com.example.gmtandroid.postLogin.fundingDetails.ProjectDetailsViewModel" />
     </data>
 </layout>

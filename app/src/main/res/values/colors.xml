@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#007559</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorFade">#B8F8E9</color>
+    <color name="colorTextNormal">#565656</color>
     <color name="colorAccent">#D81B60</color>
     <color name="color_login_editext">#EEE7E7</color>
     <color name="red">#ff0000</color>

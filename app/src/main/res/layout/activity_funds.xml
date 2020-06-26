@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_background"
-    tools:context=".PostLogin.unconfirmed_funds.FundsActivity">
+    tools:context=".postLogin.unconfirmed_funds.FundsActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/funds_page_view"
@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Close"
+            android:textColor="@color/colorTextNormal"
             android:layout_marginStart="30dp"
             android:onClick="closeFunds"
             style="?android:attr/borderlessButtonStyle"
@@ -40,8 +41,9 @@
             android:id="@+id/funds_dot_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="end"
             android:orientation="horizontal" />
 
     </LinearLayout>

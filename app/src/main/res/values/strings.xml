@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GMTAndroid</string>
+    <string name="app_name">GMT Planter</string>
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
     <string name="to_new_reg">Click here to New Registration</string>
@@ -23,4 +23,25 @@
     <string name="back_to_home"><![CDATA[< Back to Home]]></string>
     <string name="project_details">Project Details</string>
     <string name="nursery_image">Nursery image</string>
+    <string name="you_have_funds_coming">You have funds coming</string>
+    <string name="back">Back</string>
+    <string name="branch">Branch:</string>
+    <string name="account_no">Account no:</string>
+    <string name="name">Name:</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="edit_personal_details">Edit Personal Details</string>
+    <string name="address">Address</string>
+    <string name="my_profile">My Profile</string>
+    <string name="project_image">project_image</string>
+    <string name="select_my_project">Select My project</string>
+    <string name="select_caption">Select Caption</string>
+    <string name="submit">Submit</string>
+    <string name="projects_in_funding">Projects in Funding</string>
+    <string name="projects_in_management">Projects in Management</string>
+    <string name="no_projects_found">No Projects Found</string>
+    <string name="save_details">Save Details</string>
+    <string name="welcome_to_grove">Welcome to Grove</string>
+    <string name="get_started">Get Started</string>
+    <string name="fund_sent_amount">Fund Sent Amount</string>
+    <string name="confirm">Confirm</string>
 </resources>
