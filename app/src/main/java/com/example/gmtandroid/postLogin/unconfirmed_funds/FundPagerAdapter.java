@@ -25,10 +25,12 @@ public class FundPagerAdapter extends PagerAdapter {
     List<Datum> pager;
     private TextView fundAmountTV, projectdateTV, descTV;
     private ImageView imageView;
+    private UnconfirmedFunds unconfirmedFunds;
 
-    public FundPagerAdapter(Context context, List<Datum> pager) {
+    public FundPagerAdapter(Context context, List<Datum> pager, UnconfirmedFunds unconfirmedFunds) {
         this.context = context;
         this.pager = pager;
+        this.unconfirmedFunds = unconfirmedFunds;
     }
 
     @Override
@@ -51,14 +53,16 @@ public class FundPagerAdapter extends PagerAdapter {
         descTV = view.findViewById(R.id.funds_project_desc);
         Button btn = view.findViewById(R.id.Confirm_btn);
         Datum data = pager.get(position);
-        if (Objects.nonNull(data.getPic())) Picasso.with(context).load(data.getPic()).into(imageView);
-        if (Objects.nonNull(data.getAmount())) fundAmountTV.setText("$ "+data.getAmount());
-        if (Objects.nonNull(data.getCreatedAt())) projectdateTV.setText(data.getCreatedAt().substring(0, 9));
-        if (Objects.nonNull(data.getProject().getName())) descTV.setText(data.getProject().getName());
+        if (data.getPic() != null) Picasso.with(context).load(data.getPic()).into(imageView);
+        if (data.getAmount() != null) fundAmountTV.setText("$ "+data.getAmount());
+        if (data.getCreatedAt() != null) projectdateTV.setText(data.getCreatedAt().substring(0, 10));
+        if (data.getProject().getName() != null) descTV.setText(data.getProject().getName());
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, UploadRecieptActivity.class);
+                i.putExtra("unconfirmed_funds", unconfirmedFunds);
+                i.putExtra("page_position", position);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }

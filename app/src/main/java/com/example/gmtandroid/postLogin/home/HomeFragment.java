@@ -55,7 +55,6 @@ public class HomeFragment extends Fragment implements RecyclerItemClickListener 
         tv3 = root.findViewById(R.id.no_projects_found);
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        setAdapters();
         return root;
     }
 
@@ -68,17 +67,17 @@ public class HomeFragment extends Fragment implements RecyclerItemClickListener 
                     public void onChanged(ProjectList projectList) {
                         postLogin.hideProgressView();
                         isScreenLoaded = true;
-                        if (Objects.nonNull(projectList.getData())) {
+                        if (projectList.getData() != null) {
                             homeViewModel.setFundList(projectList.getData().getACTIVEFUNDING());
                             homeViewModel.setManagementList(projectList.getData().getACTIVEMANAGEMENT());
-                            Constant.shared.projectList.addAll(homeViewModel.getFundList());
-                            Constant.shared.projectList.addAll(homeViewModel.getManagementList());
                             Log.i("lists", homeViewModel.getFundList().toString() + " " + homeViewModel.getManagementList().toString());
                             if (!homeViewModel.getFundList().isEmpty()) {
+                                Constant.shared.projectList.addAll(homeViewModel.getFundList());
                                 fundingRv.setVisibility(View.VISIBLE);
                                 tv1.setVisibility(View.VISIBLE);
                             }
                             if (!homeViewModel.getManagementList().isEmpty()) {
+                                Constant.shared.projectList.addAll(homeViewModel.getManagementList());
                                 tv2.setVisibility(View.VISIBLE);
                                 managementRv.setVisibility(View.VISIBLE);
                             }
@@ -88,7 +87,7 @@ public class HomeFragment extends Fragment implements RecyclerItemClickListener 
                             //Setting Adapters
                             FundingRecyclerViewAdapter fundingRecyclerViewAdapter = new FundingRecyclerViewAdapter(homeViewModel.getFundList(), ctx, HomeFragment.this);
                             fundingRv.setAdapter(fundingRecyclerViewAdapter);
-                            ManagementRecyclerViewAdapter managementRecyclerViewAdapter = new ManagementRecyclerViewAdapter(homeViewModel.getManagementList(), ctx, HomeFragment.this);
+                            FundingRecyclerViewAdapter managementRecyclerViewAdapter = new FundingRecyclerViewAdapter(homeViewModel.getManagementList(), ctx, HomeFragment.this);
                             managementRv.setAdapter(managementRecyclerViewAdapter);
                             //Disabling scrolling
                             fundingRv.setNestedScrollingEnabled(false);
@@ -135,6 +134,9 @@ public class HomeFragment extends Fragment implements RecyclerItemClickListener 
     @Override
     public void onResume() {
         super.onResume();
-        if (!isScreenLoaded) setAdapters();
+        if (!isScreenLoaded) {
+            Constant.shared.projectList.clear();
+            setAdapters();
+        }
     }
 }

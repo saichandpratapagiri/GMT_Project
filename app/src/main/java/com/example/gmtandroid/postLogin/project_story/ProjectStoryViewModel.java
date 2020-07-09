@@ -10,6 +10,7 @@ import com.example.gmtandroid.utilities.Constant;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +32,7 @@ public class ProjectStoryViewModel extends BaseViewmodel {
         projectStoryCaptionsCall.enqueue(new Callback<ProjectStoryCaptions>() {
             @Override
             public void onResponse(Call<ProjectStoryCaptions> call, Response<ProjectStoryCaptions> response) {
-                if (response.code() > 400) {
+                if (response.code() < 400) {
                     captions.postValue(response.body());
                 } else {
                     setErrorMessage("Unable to fetch captions now");
@@ -46,12 +47,34 @@ public class ProjectStoryViewModel extends BaseViewmodel {
         return captions;
     }
 
-    public String[] getMyProjects() {
-        return myProjects.toArray(new String[myProjects.size()]);
+    MutableLiveData<ResponseBody> uploadStatus(ProjectStoryRequest requestBody) {
+        MutableLiveData<ResponseBody> responseBody = new MutableLiveData<>();
+        ApiService apiService = getApiService();
+        Call<ResponseBody> responseBodyCall = apiService.uploadStatus(Constant.shared.access_token, requestBody);
+        responseBodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code() < 400) {
+                    responseBody.postValue(response.body());
+                } else {
+                    responseBody.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                responseBody.postValue(null);
+            }
+        });
+        return responseBody;
     }
 
-    public String[] getCaptions() {
-        return new String[captions.getValue().getData().size()];
+    public List<ACTIVEFUNDINGItem> getMyProjects() {
+        return myProjects;
+    }
+
+    public ProjectStoryCaptions getCaptions() {
+        return captions.getValue();
     }
 
 }

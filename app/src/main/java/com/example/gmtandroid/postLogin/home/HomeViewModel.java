@@ -41,8 +41,7 @@ public class HomeViewModel extends BaseViewmodel {
             public void onResponse(Call<ProjectList> call, Response<ProjectList> response) {
                 Log.i("API CALLS PROJECTS", response.toString());
                 if (response.code() < 400) {
-                    projectLists.setValue(response.body());
-
+                    projectLists.postValue(response.body());
                 } else {
                     setErrorMessage(response.message());
                     projectLists.setValue(null);
@@ -58,6 +57,8 @@ public class HomeViewModel extends BaseViewmodel {
             }
         });
     }
+
+
 
     List<ACTIVEFUNDINGItem> getFundList() {
         return fundList;

@@ -31,6 +31,8 @@ public class FundsActivity extends BaseActivity {
     private LinearLayout layout_dot;
     private TextView[] dot;
     private UnconfirmedFundsviewModel viewModel;
+    private UnconfirmedFunds unconfdFunds;
+    private int currentpage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,6 @@ public class FundsActivity extends BaseActivity {
         layout_dot = (LinearLayout) findViewById(R.id.funds_dot_layout);
         arrayList = new ArrayList<>();
         viewModel = ViewModelProviders.of(this).get(UnconfirmedFundsviewModel.class);
-        getUnconfirmedFunds();
 
     }
 
@@ -51,7 +52,9 @@ public class FundsActivity extends BaseActivity {
                 @Override
                 public void onChanged(UnconfirmedFunds unconfirmedFunds) {
                     hideProgressView();
-                    if (Objects.nonNull(unconfirmedFunds.getData())) {
+                    if (unconfirmedFunds.getData() != null) {
+                        if (unconfirmedFunds.getData().size() == 0) navigate();
+                        unconfdFunds = unconfirmedFunds;
                         arrayList = unconfirmedFunds.getData();
                         setPageAdapter();
                     } else {
@@ -65,7 +68,7 @@ public class FundsActivity extends BaseActivity {
     }
 
     private void setPageAdapter() {
-        FundPagerAdapter pagerAdapter = new FundPagerAdapter(getApplicationContext(), arrayList);
+        FundPagerAdapter pagerAdapter = new FundPagerAdapter(getApplicationContext(), arrayList, unconfdFunds);
         viewPager.setAdapter(pagerAdapter);
         if (arrayList.size() > 1) addDot(0);
 
@@ -87,6 +90,7 @@ public class FundsActivity extends BaseActivity {
 
     private void addDot(int page_position) {
         dot = new TextView[arrayList.size()];
+        currentpage = page_position;
         layout_dot.removeAllViews();
 
         for (int i = 0; i < dot.length; i++) {;
@@ -100,13 +104,20 @@ public class FundsActivity extends BaseActivity {
         dot[page_position].setTextColor(getResources().getColor(R.color.colorPrimary));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUnconfirmedFunds();
+    }
+
     public void closeFunds(View view) {
         navigate();
     }
 
     private void navigate() {
+        Intent intent = new Intent(FundsActivity.this, PostLogin.class);
+        startActivity(intent);
         finish();
-        startActivity(new Intent(FundsActivity.this, PostLogin.class));
     }
 
 }

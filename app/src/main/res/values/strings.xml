@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GMT Planter</string>
+    <string name="app_name">GROVE</string>
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
     <string name="to_new_reg">Click here to New Registration</string>
@@ -44,4 +44,6 @@
     <string name="get_started">Get Started</string>
     <string name="fund_sent_amount">Fund Sent Amount</string>
     <string name="confirm">Confirm</string>
+    <string name="enter_amount_received">Enter Amount Received</string>
+    <string name="close">close</string>
 </resources>

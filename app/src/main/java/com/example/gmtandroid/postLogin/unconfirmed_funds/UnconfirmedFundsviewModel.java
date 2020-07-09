@@ -8,6 +8,7 @@ import com.example.gmtandroid.ApiService;
 import com.example.gmtandroid.BaseViewmodel;
 import com.example.gmtandroid.utilities.Constant;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,4 +46,27 @@ public class UnconfirmedFundsviewModel extends BaseViewmodel {
             }
         });
     }
+
+    MutableLiveData<ResponseBody> uploadReciept(UnconfirmedFundsRequest requestBody) {
+        MutableLiveData<ResponseBody> responseBody = new MutableLiveData<>();
+        ApiService apiService = getApiService();
+        Call<ResponseBody> responseBodyCall = apiService.uploadReciept(Constant.shared.access_token, requestBody);
+        responseBodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code() < 400) {
+                    responseBody.postValue(response.body());
+                } else {
+                    responseBody.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                responseBody.postValue(null);
+            }
+        });
+        return responseBody;
+    }
+
 }

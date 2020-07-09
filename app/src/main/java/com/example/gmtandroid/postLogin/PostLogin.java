@@ -12,7 +12,13 @@ import android.widget.ImageView;
 import com.example.gmtandroid.BaseActivity;
 import com.example.gmtandroid.R;
 import com.example.gmtandroid.postLogin.profile.ProfileActivity;
+import com.example.gmtandroid.postLogin.profile.ProfileModel;
+import com.example.gmtandroid.postLogin.profile.ProfileViewModel;
+import com.example.gmtandroid.postLogin.project_story.ProjectStoryFragment;
+import com.example.gmtandroid.utilities.Constant;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,7 +48,12 @@ public class PostLogin extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile_menu,menu);
         ImageView imageView = new ImageView(PostLogin.this);
-        imageView.setImageResource(R.drawable.ic_person_outline);
+        Gson gson = new Gson();
+        ProfileModel profileModel = gson.fromJson(Constant.shared.gsonProfile, ProfileModel.class);
+        if (profileModel.getData().getPic() == null || profileModel.getData().getPic().equals("")) {
+            imageView.setImageResource(R.drawable.ic_person_outline);
+        } else
+            Picasso.with(this).load(profileModel.getData().getPic()).into(imageView);
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(Color.parseColor("#ffffff"));

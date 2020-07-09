@@ -1,5 +1,6 @@
 package com.example.gmtandroid.login;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
@@ -25,12 +27,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gmtandroid.BaseActivity;
+import com.example.gmtandroid.postLogin.profile.ProfileModel;
+import com.example.gmtandroid.postLogin.profile.ProfileViewModel;
 import com.example.gmtandroid.utilities.Constant;
 import com.example.gmtandroid.postLogin.unconfirmed_funds.FundsActivity;
 import com.example.gmtandroid.R;
 import com.example.gmtandroid.utilities.FingerprintHandler;
 import com.example.gmtandroid.utilities.InternetConnection;
 import com.example.gmtandroid.utilities.NoInternetActivity;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -59,6 +64,7 @@ public class LoginActivity extends BaseActivity {
     private FingerprintManager fingerprintManager;
     private FingerprintManager.CryptoObject cryptoObject;
     private LoginViewModel viewModel;
+    private ProfileViewModel profileViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +73,10 @@ public class LoginActivity extends BaseActivity {
         usernameEt = findViewById(R.id.usernameEt);
         pswdEt = findViewById(R.id.pswdEt);
         //MARK:- Remove while production
-        usernameEt.setText("niranjan.tdp@gmail.com");
-        pswdEt.setText("Sep@2020");
+        usernameEt.setText("mastermindankur@gmail.com"); //"niranjan.tdp@gmail.com"
+        pswdEt.setText("happy2020"); //"Sep@2020"
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
 
 //        if(checkLockScreen()){
 //            generateKey();
@@ -126,6 +133,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private Boolean checkLockScreen() {
          keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
          fingerprintManager = (FingerprintManager) getSystemService(Context.FINGERPRINT_SERVICE);
@@ -158,6 +166,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void generateKey() {
         try {
             keyStore = KeyStore.getInstance("AndroidKeyStore");
@@ -198,6 +207,7 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean cipherInit(){
         try {
             cipher = Cipher.getInstance(
@@ -257,11 +267,9 @@ public class LoginActivity extends BaseActivity {
             viewModel.getUser().observe(this, new Observer<User>() {
                 @Override
                 public void onChanged(User user) {
-                    hideProgressView();
                     if (user != null) {
                         Constant.shared.access_token = "Bearer " + user.getData().getToken();
-                        finish();
-                        startActivity(new Intent(LoginActivity.this, FundsActivity.class));
+                        getProfile();
                     } else {
                         String errorMsg = viewModel.getErrorMessage();
                         Toast.makeText(LoginActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
@@ -272,6 +280,17 @@ public class LoginActivity extends BaseActivity {
             startActivity(new Intent(LoginActivity.this, NoInternetActivity.class));
         }
 
+    }
+
+    private void getProfile() {
+        profileViewModel.getProfile().observe(this, new Observer<ProfileModel>() {
+            @Override
+            public void onChanged(ProfileModel profileModel) {
+                hideProgressView();
+                finish();
+                startActivity(new Intent(LoginActivity.this, FundsActivity.class));
+            }
+        });
     }
 
     public void toRegistraction(View view) {

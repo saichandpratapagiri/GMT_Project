@@ -36,9 +36,9 @@ class Attributes {
     @SerializedName("addr")
     @Expose
     private String addr;
-    @SerializedName("status")
+    @SerializedName("pic")
     @Expose
-    private String status;
+    private String pic;
     @SerializedName("bank_details")
     @Expose
     private BankDetailsItem bankDetails;
@@ -83,12 +83,12 @@ class Attributes {
         this.addr = addr;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPic() {
+        return pic;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public BankDetailsItem getBankDetails() {
@@ -100,4 +100,5 @@ class Attributes {
     }
 
 }
+
 

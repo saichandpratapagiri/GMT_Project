@@ -3,9 +3,10 @@ package com.example.gmtandroid.postLogin.unconfirmed_funds;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UnconfirmedFunds {
+public class UnconfirmedFunds implements Serializable {
     @SerializedName("data")
     @Expose
     private List<Datum> data = null;
@@ -20,7 +21,7 @@ public class UnconfirmedFunds {
 }
 
 
-class Datum {
+class Datum implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -92,7 +93,7 @@ class Datum {
 }
 
 
-class Project {
+class Project implements Serializable{
 
     @SerializedName("id")
     @Expose

@@ -1,12 +1,20 @@
 package com.example.gmtandroid.postLogin.profile;
 
+import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.gmtandroid.ApiService;
 import com.example.gmtandroid.BaseViewmodel;
+import com.example.gmtandroid.postLogin.photo_upload_models.GetUploadUrlResponse;
 import com.example.gmtandroid.utilities.Constant;
+import com.google.gson.Gson;
+
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,10 +23,15 @@ import retrofit2.Response;
 public class ProfileViewModel extends BaseViewmodel {
     private MutableLiveData<ProfileModel> profileModel;
     private MutableLiveData<ProfileRequestBody> profileRequestBody;
+    private MutableLiveData<GetUploadUrlResponse> getUploadUrlResponse;
 
-    MutableLiveData<ProfileModel> getProfile() {
+    public ProfileViewModel() {
         profileModel = new MutableLiveData<>();
         profileRequestBody = new MutableLiveData<>();
+        getUploadUrlResponse = new MutableLiveData<>();
+    }
+
+    public MutableLiveData<ProfileModel> getProfile() {
         loadProfile();
         return profileModel;
     }
@@ -32,6 +45,8 @@ public class ProfileViewModel extends BaseViewmodel {
             public void onResponse(Call<ProfileModel> call, Response<ProfileModel> response) {
                 Log.i("API CALLS PROFILE", response.toString());
                 if (response.code() < 400) {
+                    Gson gson = new Gson();
+                    Constant.shared.gsonProfile = gson.toJson(response.body());
                     profileModel.setValue(response.body());
 
                 } else {
@@ -80,7 +95,8 @@ public class ProfileViewModel extends BaseViewmodel {
         return profileRequestBody.getValue();
     }
 
-    public void setProfileRequestBody(ProfileRequestBody profileRequestBody) {
-        this.profileRequestBody.setValue(profileRequestBody);
+    public void setProfileRequestBody(ProfileRequestBody profileRequest) {
+        if (profileRequest != null)
+          profileRequestBody.setValue(profileRequest);
     }
 }

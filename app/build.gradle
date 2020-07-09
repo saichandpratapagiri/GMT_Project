@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.gmtandroid"
-        minSdkVersion 24
+        minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -52,4 +52,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
     //MARK:- Picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    //MARK:- Upload Image Service dependency
+    implementation 'net.gotev:uploadservice:2.1'
+    //MARK:- image zoomin and zoomout
+    implementation 'com.commit451:PhotoView:1.2.4'
 }
