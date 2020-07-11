@@ -46,4 +46,5 @@
     <string name="confirm">Confirm</string>
     <string name="enter_amount_received">Enter Amount Received</string>
     <string name="close">close</string>
+    <string name="projects_not_yet_deployed">Projects Not Yet Deployed</string>
 </resources>

@@ -17,11 +17,13 @@ import retrofit2.Response;
 
 public class HomeViewModel extends BaseViewmodel {
 
+    private List<ACTIVEFUNDINGItem> notYetDeployed;
     private List<ACTIVEFUNDINGItem> fundList;
     private List<ACTIVEFUNDINGItem> managementList;
     private MutableLiveData<ProjectList> projectLists;
 
     public HomeViewModel() {
+        notYetDeployed = new ArrayList<>();
         fundList = new ArrayList<>();
         managementList = new ArrayList<>();
     }
@@ -59,6 +61,13 @@ public class HomeViewModel extends BaseViewmodel {
     }
 
 
+    List<ACTIVEFUNDINGItem> getNotYetDeployedList() {
+        return notYetDeployed;
+    }
+
+    void setNotYetDeployedList(List<ACTIVEFUNDINGItem> list) {
+        this.notYetDeployed = list;
+    }
 
     List<ACTIVEFUNDINGItem> getFundList() {
         return fundList;

@@ -31,11 +31,12 @@ import java.util.Objects;
 public class HomeFragment extends Fragment implements RecyclerItemClickListener {
 
     private HomeViewModel homeViewModel;
+    private RecyclerView notYetDeployedRv;
     private RecyclerView fundingRv;
     private RecyclerView managementRv;
     private Context ctx;
     private PostLogin postLogin;
-    private TextView tv1, tv2, tv3;
+    private TextView tv, tv1, tv2, tv3;
     private Boolean isScreenLoaded = false;
 
     @Override
@@ -48,6 +49,8 @@ public class HomeFragment extends Fragment implements RecyclerItemClickListener 
                              final ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
         postLogin = (PostLogin) getActivity();
+        tv = root.findViewById(R.id.projects_not_yet_deployed);
+        notYetDeployedRv = root.findViewById(R.id.funding_nyd);
         tv1 = root.findViewById(R.id.projects_in_funding);
         fundingRv = root.findViewById(R.id.funding_rv);
         tv2 = root.findViewById(R.id.projects_in_management);
@@ -68,9 +71,15 @@ public class HomeFragment extends Fragment implements RecyclerItemClickListener 
                         postLogin.hideProgressView();
                         isScreenLoaded = true;
                         if (projectList.getData() != null) {
+                            homeViewModel.setNotYetDeployedList(projectList.getData().getNOTYETDEPLOYED());
                             homeViewModel.setFundList(projectList.getData().getACTIVEFUNDING());
                             homeViewModel.setManagementList(projectList.getData().getACTIVEMANAGEMENT());
                             Log.i("lists", homeViewModel.getFundList().toString() + " " + homeViewModel.getManagementList().toString());
+                            if (!homeViewModel.getNotYetDeployedList().isEmpty()) {
+                                Constant.shared.projectList.addAll(homeViewModel.getNotYetDeployedList());
+                                notYetDeployedRv.setVisibility(View.VISIBLE);
+                                tv.setVisibility(View.VISIBLE);
+                            }
                             if (!homeViewModel.getFundList().isEmpty()) {
                                 Constant.shared.projectList.addAll(homeViewModel.getFundList());
                                 fundingRv.setVisibility(View.VISIBLE);
@@ -81,21 +90,26 @@ public class HomeFragment extends Fragment implements RecyclerItemClickListener 
                                 tv2.setVisibility(View.VISIBLE);
                                 managementRv.setVisibility(View.VISIBLE);
                             }
-                            if (homeViewModel.getFundList().isEmpty() && homeViewModel.getManagementList().isEmpty()) {
+                            if (homeViewModel.getNotYetDeployedList().isEmpty() && homeViewModel.getFundList().isEmpty() && homeViewModel.getManagementList().isEmpty()) {
                                 tv3.setVisibility(View.VISIBLE);
                             }
+                            //Disabling scrolling
+                            notYetDeployedRv.setNestedScrollingEnabled(false);
+                            fundingRv.setNestedScrollingEnabled(false);
+                            managementRv.setNestedScrollingEnabled(false);
+                            //Setting Layout Managers
+                            notYetDeployedRv.setLayoutManager(new LinearLayoutManager(ctx));
+                            fundingRv.setLayoutManager(new LinearLayoutManager(ctx));
+                            managementRv.setLayoutManager(new LinearLayoutManager(ctx));
                             //Setting Adapters
+                            FundingRecyclerViewAdapter notYetDeployedRecyclerViewAdapter = new FundingRecyclerViewAdapter(homeViewModel.getNotYetDeployedList(), ctx, HomeFragment.this);
+                            notYetDeployedRv.setAdapter(notYetDeployedRecyclerViewAdapter);
                             FundingRecyclerViewAdapter fundingRecyclerViewAdapter = new FundingRecyclerViewAdapter(homeViewModel.getFundList(), ctx, HomeFragment.this);
                             fundingRv.setAdapter(fundingRecyclerViewAdapter);
                             FundingRecyclerViewAdapter managementRecyclerViewAdapter = new FundingRecyclerViewAdapter(homeViewModel.getManagementList(), ctx, HomeFragment.this);
                             managementRv.setAdapter(managementRecyclerViewAdapter);
-                            //Disabling scrolling
-                            fundingRv.setNestedScrollingEnabled(false);
-                            managementRv.setNestedScrollingEnabled(false);
-                            //Setting Layout Managers
-                            fundingRv.setLayoutManager(new LinearLayoutManager(ctx));
-                            managementRv.setLayoutManager(new LinearLayoutManager(ctx));
                             //notify data changed
+                            notYetDeployedRecyclerViewAdapter.notifyDataSetChanged();
                             fundingRecyclerViewAdapter.notifyDataSetChanged();
                             managementRecyclerViewAdapter.notifyDataSetChanged();
                         } else {

@@ -94,11 +94,13 @@ public class BaseActivity extends AppCompatActivity {
 
     public String getFileExtension(Uri uri)
     {
-        ContentResolver contentResolver=getContentResolver();
-        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
-
-        // Return file Extension
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+//        ContentResolver contentResolver=getContentResolver();
+//        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
+//
+//        // Return file Extension
+//        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+        String filePath = getFilePath(uri);
+        return filePath.substring(filePath.lastIndexOf(".") + 1);
     }
 
     public String getFilePath(Uri contentURI) {

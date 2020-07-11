@@ -266,7 +266,7 @@ public class ProfileActivity extends BaseActivity {
             String path = getFilePath(imageUri);
             File file = new File(path);
             RequestBody requestFile = RequestBody.create(
-                    MediaType.parse(getContentResolver().getType(imageUri)),
+                    MediaType.parse("multipart/form-data"),
                     file
             );
             MultipartBody.Part body = MultipartBody.Part.createFormData("picture", file.getName(), requestFile);

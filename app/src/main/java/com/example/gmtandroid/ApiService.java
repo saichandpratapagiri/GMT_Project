@@ -93,7 +93,7 @@ public interface ApiService {
 
     @Multipart
     @Headers({
-            "Content-Type: application/x-www-form-urlencoded",
+            "Content-Type: application/octet-stream",
             "Accept-Encoding: gzip,deflate",
             "Accept: multipart/form-data"
     })

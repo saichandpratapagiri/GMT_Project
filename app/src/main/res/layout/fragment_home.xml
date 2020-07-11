@@ -20,6 +20,28 @@
             android:textAlignment="center"
             android:gravity="center_vertical"
             />
+        <TextView
+            android:id="@+id/projects_not_yet_deployed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/projects_not_yet_deployed"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/funding_nyd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:visibility="gone"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            />
 
         <TextView
             android:id="@+id/projects_in_funding"
