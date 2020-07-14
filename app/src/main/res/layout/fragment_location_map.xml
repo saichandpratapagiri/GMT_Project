@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_tab_layout">
+
+            <ImageView
+                android:id="@+id/image_project_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:contentDescription="@string/planting_area_boundaries_image"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toTopOf="@+id/label_density"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/label_planting_area"
+                style="@style/ProjectDetails_Text_LabelStyle"
+                android:layout_width="0dp"
+                android:text="@string/planting_area"
+                app:layout_constraintEnd_toStartOf="@+id/label_density"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_project_details" />
+
+            <TextView
+                android:id="@+id/text_planting_area"
+                style="@style/ProjectDetails_TextStyle"
+                android:layout_width="0dp"
+                android:text="@{viewModel.plantingArea}"
+                app:layout_constraintEnd_toStartOf="@+id/text_density"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_planting_area" />
+
+            <TextView
+                android:id="@+id/label_density"
+                style="@style/ProjectDetails_Text_LabelStyle"
+                android:layout_width="0dp"
+                android:text="@string/density"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_planting_area"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/label_planting_area"
+                app:layout_constraintTop_toBottomOf="@+id/image_project_details" />
+
+            <TextView
+                android:id="@+id/text_density"
+                style="@style/ProjectDetails_TextStyle"
+                android:layout_width="0dp"
+                android:text="@{viewModel.density}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_planting_area"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_planting_area"
+                app:layout_constraintTop_toBottomOf="@+id/label_density" />
+
+            <TextView
+                android:id="@+id/label_total_trees"
+                style="@style/ProjectDetails_Text_LabelStyle"
+                android:text="@string/total_trees"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_density" />
+
+            <TextView
+                android:id="@+id/text_total_trees"
+                style="@style/ProjectDetails_TextStyle"
+                android:text="@{viewModel.totalTrees}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_total_trees" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.gmtandroid.postLogin.fundingDetails.LocationMapViewModel" />
+    </data>
+</layout>
